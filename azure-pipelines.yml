@@ -1,0 +1,106 @@
+# Node.js with Vue
+# Build a Node.js project that uses Vue.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+  - master
+
+pool:
+  vmImage: "ubuntu-latest"
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "14.x"
+    displayName: "Install Node.js"
+
+  - script: yarn
+    displayName: "Install Dependencies"
+
+  - script: yarn build
+    displayName: "Build Project"
+
+  - script: yarn test:unit:ci
+    displayName: "Run Unit Tests"
+    continueOnError: true
+
+  - task: PublishTestResults@2
+    displayName: "Publish Unit Test Results"
+    inputs:
+      testResultsFormat: "JUnit"
+      testResultsFiles: "*.xml"
+      searchFolder: "$(Build.SourcesDirectory)/coverage/junit"
+      mergeTestResults: true
+      failTaskOnFailedTests: true
+      testRunTitle: "Publish Test Results"
+    condition: always()
+
+  - task: reportgenerator@4
+    displayName: "Generate Coverage Report"
+    inputs:
+      reports: "$(Build.SourcesDirectory)/coverage/clover/clover.xml"
+      customSettings: "settings:excludeTestProjects=true"
+      targetdir: "$(Build.SourcesDirectory)/CoverageResults"
+    condition: always()
+
+  - task: PublishCodeCoverageResults@1
+    displayName: "Publish Coverage Results"
+    inputs:
+      codeCoverageTool: "Cobertura"
+      summaryFileLocation: "$(Build.SourcesDirectory)/CoverageResults/Cobertura.xml"
+      failIfCoverageEmpty: true
+    condition: always()
+
+  - script: |
+      touch $(Build.SourcesDirectory)/.env.local
+      echo $(env.api.url) >> $(Build.SourcesDirectory)/.env.local
+      echo $(env.insights.key) >> $(Build.SourcesDirectory)/.env.local
+      echo $(env.recaptcha.key) >> $(Build.SourcesDirectory)/.env.local
+    displayName: "Prepare E2E Environment"
+    enabled: false
+
+  - script: yarn test:e2e:ci
+    displayName: "Run E2E Tests"
+    continueOnError: true
+
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish E2E Video Test Results"
+    inputs:
+      PathtoPublish: "$(Build.SourcesDirectory)/tests/e2e/results"
+      ArtifactName: "E2E Test Results"
+      publishLocation: "Container"
+    condition: always()
+
+  - task: PublishTestResults@2
+    displayName: "Publish E2E Test Results"
+    inputs:
+      testResultsFormat: "JUnit"
+      testResultsFiles: "*.xml"
+      searchFolder: "$(System.DefaultWorkingDirectory)/cypress/reports/junit"
+      mergeTestResults: true
+      failTaskOnFailedTests: true
+      testRunTitle: "Publish Test Results"
+    condition: always()
+
+  - task: CopyFiles@2
+    displayName: "Copy Artifacts"
+    inputs:
+      SourceFolder: "$(Build.SourcesDirectory)/dist"
+      Contents: "**"
+      TargetFolder: "$(Build.ArtifactStagingDirectory)"
+
+  - task: CopyFiles@2
+    displayName: "Copy Web.config"
+    inputs:
+      SourceFolder: "$(Build.SourcesDirectory)"
+      Contents: "web.config"
+      TargetFolder: "$(Build.ArtifactStagingDirectory)"
+    enabled: false
+
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish Artifacts"
+    inputs:
+      PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+      ArtifactName: "web"
+      publishLocation: "Container"

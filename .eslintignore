@@ -1,0 +1,4 @@
+/.vscode/
+/dist/
+/tests/e2e/
+/tests/unit/coverage/
