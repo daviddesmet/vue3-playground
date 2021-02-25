@@ -37,6 +37,10 @@
   "devDependencies": {
     "@babel/core": "^7.13.1",
     "@babel/preset-env": "^7.13.5",
+    "@tailwindcss/aspect-ratio": "^0.2.0",
+    "@tailwindcss/forms": "^0.2.1",
+    "@tailwindcss/line-clamp": "^0.2.0",
+    "@tailwindcss/typography": "^0.4.0",
     "@types/jest": "^26.0.20",
     "@types/mocha": "^8.2.1",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
