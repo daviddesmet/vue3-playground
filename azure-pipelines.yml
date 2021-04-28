@@ -63,6 +63,9 @@ steps:
     displayName: "Prepare E2E Environment"
     enabled: false
 
+  - script: yarn start
+    displayName: "Start Vite dev server"
+
   - script: yarn test:e2e:ci
     displayName: "Run E2E Tests"
     continueOnError: true
