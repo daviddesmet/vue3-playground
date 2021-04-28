@@ -21,6 +21,9 @@ steps:
   - script: yarn build
     displayName: "Build Project"
 
+  - script: yarn lint:ci
+    displayName: "Run Lint Checks"
+
   - script: yarn test:unit:ci
     displayName: "Run Unit Tests"
     continueOnError: true

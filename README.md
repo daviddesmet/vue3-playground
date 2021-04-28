@@ -16,6 +16,7 @@ This template should help get you started developing with Vue 3 and Typescript i
 - Alias `@` to `<project_root>/src`
 - Define `_APP_VERSION` from `package.json` version at build time
 - Cypress.io e2e tests (configured similarly to `vue-cli`)
+- Vite
 
 ## Project setup and usage
 
