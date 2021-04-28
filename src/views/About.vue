@@ -6,6 +6,7 @@
 import { defineComponent } from "vue";
 import HelloWorldDecorator from "@/components/HelloWorldDecorator.vue";
 
+/* Vue Composition API */
 export default defineComponent({
   name: "About",
   components: {

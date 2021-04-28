@@ -16,6 +16,7 @@
 import { defineComponent } from "vue";
 import HeaderLayout from "@/components/HeaderLayout.vue";
 
+/* Vue Composition API */
 export default defineComponent({
   name: "App",
   components: {
