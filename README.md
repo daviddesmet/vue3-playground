@@ -16,6 +16,7 @@ This template should help get you started developing with Vue 3 and Typescript i
 - Alias `@` to `<project_root>/src`
 - Define `_APP_VERSION` from `package.json` version at build time
 - Cypress.io e2e tests (configured similarly to `vue-cli`)
+- Husky
 - Vite
 
 ## Project setup and usage
@@ -32,13 +33,13 @@ Run development server:
 yarn dev
 ```
 
-Open Cypress test runner:
+Run Jest unit tests & Open Cypress test runner:
 
 ```
 yarn test
 ```
 
-Run Cypress tests in headless mode:
+Run Jest unit tests & Run Cypress tests in headless mode:
 
 ```
 yarn test:ci
