@@ -7,12 +7,14 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
+    meta: { title: "Home" }
   },
   {
     path: "/about",
     name: "About",
-    component: About
+    component: About,
+    meta: { title: "About" }
   },
   {
     path: "/:catchAll(.*)",

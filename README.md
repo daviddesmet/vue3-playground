@@ -1,6 +1,6 @@
 # Vue 3 + Typescript + Vite
 
-This template should help get you started developing with Vue 3 and Typescript in Vite.
+An opinionated quickstart for developing with Vue 3 and Typescript in Vite.
 
 ## Features
 
@@ -9,8 +9,11 @@ This template should help get you started developing with Vue 3 and Typescript i
 - TypeScript
 - Tailwind CSS w/ plugins preinstalled
   - `@tailwindcss/aspect-ratio`
+  - `@tailwindcss/line-clamp`
   - `@tailwindcss/typography`
   - `@tailwindcss/forms`
+- Headless UI
+- Heroicons
 - Eslint
 - Prettier
 - Alias `@` to `<project_root>/src`
@@ -18,6 +21,10 @@ This template should help get you started developing with Vue 3 and Typescript i
 - Cypress.io e2e tests (configured similarly to `vue-cli`)
 - Husky
 - Vite
+- Azure DevOps
+- GitHub Actions
+  - Dependabot
+  - Automated e2e tests
 
 ## Project setup and usage
 
