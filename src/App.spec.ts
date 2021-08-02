@@ -1,22 +1,26 @@
 import { mount, shallowMount } from "@vue/test-utils";
 import App from "./App.vue";
+import router from "./router";
 // import Hello from "./Hello.vue";
 
-test("uses mounts", async () => {
-  const wrapper = mount(App);
-  expect(wrapper.html()).toContain("Vue app");
-  expect(wrapper.html()).toContain("Hello world");
-  expect(wrapper.html()).toContain("Count: 0");
-
-  await wrapper.find("button").trigger("click");
-  expect(wrapper.html()).toContain("Count: 1");
+test("uses mounts", () => {
+  const wrapper = mount(App, {
+    global: {
+      plugins: [router]
+    }
+  });
+  expect(wrapper.html()).toContain("Home");
+  expect(wrapper.html()).not.toContain("Hello world");
 });
 
-test("uses shallowMount", async () => {
-  const wrapper = shallowMount(App);
-  expect(wrapper.html()).toContain("Vue app");
+test("uses shallowMount", () => {
+  const wrapper = shallowMount(App, {
+    global: {
+      plugins: [router]
+    }
+  });
+  expect(wrapper.html()).toContain("Home");
   expect(wrapper.html()).not.toContain("Hello world");
-  expect(wrapper.html()).toContain("Count: 0");
 
   /*
   // TODO: Improve types for `findComponent`

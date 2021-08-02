@@ -11,13 +11,12 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "lib": ["esnext", "dom"],
-    "types": ["vite/client", "@types/jest", "cypress", "mocha"],
-    // "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }],
+    "types": ["vite/client", "@types/jest"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "exclude": ["node_modules", "dist", "public", "tests"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "tests/unit/**/*.ts", "tests/unit/**/*.tsx"],
+  "exclude": ["node_modules", "dist", "public"]
 }
