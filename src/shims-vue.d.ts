@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 declare module "*.vue" {
   import { DefineComponent } from "vue";
   const component: DefineComponent<{}, {}, any>;
@@ -9,5 +12,3 @@ declare module "*.vue" {
 //   const _default: Component;
 //   export default _default;
 // }
-
-declare const _APP_VERSION: string;

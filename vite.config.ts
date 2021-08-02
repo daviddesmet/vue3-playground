@@ -10,6 +10,7 @@ export default defineConfig({
   resolve: {
     alias: {
       // https://github.com/vitejs/vite/issues/88
+      // "@/": new URL("./src/", import.meta.url).pathname
       "@": resolve(__dirname, "src")
     }
   },

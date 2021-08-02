@@ -17,6 +17,10 @@
 // Import commands.js using ES2015 syntax:
 import "./commands";
 
+beforeEach(() => {
+  cy.viewport(600, 600, { log: false });
+});
+
 Cypress.on("window:before:load", (win) => {
   win.handleFromCypress = function (request) {
     return fetch(request.url, {
@@ -30,4 +34,8 @@ Cypress.on("window:before:load", (win) => {
       });
     });
   };
+});
+
+Cypress.Commands.add("vue", () => {
+  return cy.wrap(Cypress.vueWrapper);
 });
