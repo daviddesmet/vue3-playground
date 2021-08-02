@@ -1,6 +1,8 @@
 import { mount } from "@cypress/vue";
 import HelloWorld from "@/components/HelloWorld.vue";
 
+// TODO: Fix clashing types with Jest
+
 const msg = "Hello Cypress!";
 
 describe("<HelloWorld />", () => {
