@@ -5,6 +5,7 @@
 # GitHub Linguist Override
 .yarn/* linguist-vendored
 .pnp.js linguist-vendored
+*.spec.js linguist-vendored
 
 # ===
 # Binary Files (don't diff, don't fix line endings)
